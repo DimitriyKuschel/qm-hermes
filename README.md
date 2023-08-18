@@ -1,5 +1,5 @@
 
-<center><img src="https://raw.githubusercontent.com/DimitriyKuschel/qm-hermes/master/public/img/logo.svg" alt="Alt Text" width="300" height="200"></center>
+<center><img src="https://raw.githubusercontent.com/DimitriyKuschel/qm-hermes/master/public/img/logo-black.svg" alt="Alt Text" width="300" height="200"></center>
 
 ### Queue Manager Hermes
 ![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)

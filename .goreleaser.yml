@@ -1,0 +1,113 @@
+before:
+  hooks:
+
+env_files:
+  github_token: /root/projects/keys/main
+
+builds:
+  -
+    main: ./
+    binary: qm-hermes
+    id: qm-hermes
+    ldflags: -s -w
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - freebsd
+      - openbsd
+      - netbsd
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+      - ppc64
+      - mips64
+    goarm:
+      - 7
+
+release:
+  draft: false
+
+archives:
+  -
+    id: "qm-hermes"
+    builds: ['qm-hermes']
+    format: tar.gz
+    name_template: "{{.ProjectName}}-{{.Version}}-{{.Os}}-{{.Arch}}"
+
+nfpms:
+  -
+    id: "qm-hermes"
+    builds: ['qm-hermes']
+    formats:
+      - deb
+      - rpm
+    vendor: "Greenline Software LLC<info@greenline-software.com>"
+    homepage: "https://greenline-software.com/"
+    maintainer: "Dimitriy Kuschel <info@greenline-software.com>"
+
+    description: "qm-hermes"
+    license: "Apache 2.0"
+    file_name_template: "{{.ProjectName}}-{{.Version}}-{{.Os}}-{{.Arch}}"
+
+    bindir: /usr/sbin
+
+    dependencies:
+      - systemd
+      - logrotate
+
+    contents:
+
+      - dst: "/etc/qm-hermes"
+        type: dir
+
+      - dst: "/var/log/qm-hermes"
+        type: dir
+
+      - src: "deployments/systemd/qm-hermes.service"
+        dst: "/lib/systemd/system/qm-hermes.service"
+
+      - src: "deployments/logrotate.d/qm-hermes"
+        dst: "/etc/logrotate.d/qm-hermes"
+
+      - src: "configs/config.yml"
+        dst: "/etc/qm-hermes/config.yml"
+        type: config
+
+
+    scripts:
+      postinstall: "scripts/postinstall.sh"
+
+scoop:
+
+  commit_author:
+    name: "Dimitriy Kuschel"
+    email: info@greenline-software.com
+  homepage:  "https://greenline-software.com/"
+  license: Apache 2.0
+
+brews:
+ -
+   commit_author:
+     name: "Dimitriy Kuschel"
+     email:  info@greenline-software.com
+   homepage: "https://greenline-software.com/"
+   goarm: 7
+
+snapshot:
+  name_template: "{{.Version}}-master"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - README
+    - OPTIONS
+    - Readme
+    - Options
+    - Image
+    - Script
+    - Docker
+    - Typo
+    - "via upload"
+    - goreleaser

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Queue "{{queue}}" Messages:</h2>
+<div class="table-responsive small" id="messages">
+
+</div>
+
+{% endblock %}
+
+{% block footer_scripts_ext %}
+<script>
+    const queueName = '{{queue}}';
+</script>
+<script src="/static/js/queue.js"></script>
+{% endblock %}
+
+{% block ext_navbar %}
+<a href="/queues/message?queue={{queue}}" class="btn btn-primary">Send Message</a>
+{% endblock %}

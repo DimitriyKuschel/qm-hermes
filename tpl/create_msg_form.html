@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 mt-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Send Message</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" id="msgForm">
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message:</label>
+                            <textarea class="form-control" id="message" name="message" placeholder="Enter Message" required></textarea>
+                        </div>
+                        <input type="hidden" name="queue_name" value="{{queue}}">
+                        <button type="submit" class="btn btn-primary btn-block" id="send">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer_scripts_ext %}
+
+<div class="position-fixed  end-0 p-3" style="z-index: 11; top: 50px;">
+    <div id="successToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-success text-white">
+            <strong class="me-auto">Success</strong>
+            <button type="button" class="btn-close text-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="msgTxtSuccess">
+
+        </div>
+    </div>
+
+    <div id="errorToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-danger text-white">
+            <strong class="me-auto">Error</strong>
+            <button type="button" class="btn-close text-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="msgTxtError">
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+
+    function showToast(msgTxt, type) {
+
+
+
+        const toastId = type === "success" ?  'successToast' : 'errorToast';
+        const msgId = type === "success" ?  'msgTxtSuccess' : 'msgTxtError';
+
+        const msg = document.getElementById(toastId);
+        const toast = new bootstrap.Toast(msg, {
+            autohide: true,
+            delay: 1000 // 1 second
+        });
+        document.getElementById(msgId).innerHTML = msgTxt;
+        toast.show();
+    }
+
+
+    function sendData(url, data) {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).catch(error => {
+                console.error('Error:', error);
+                // Handle errors here
+            });
+    }
+
+    const apiUrl = '/api/v1/message/create';
+    const form = document.getElementById('msgForm');
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+         const formData = new FormData(e.target);
+
+        const jsonData = {
+            queue_name: formData.get('queue_name'),
+            message: formData.get('message')
+        };
+        try {
+            await sendData(apiUrl, jsonData);
+            showToast("Message sent Successfully", "success");
+            form.reset();
+        }
+        catch (err) {
+            showToast("Error Sending Message", "error");
+            console.log(err);
+        }
+
+
+    });
+
+
+
+</script>
+{% endblock %}

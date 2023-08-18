@@ -1,0 +1,144 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/api/v1/message/create": {
+      "post": {
+        "description": "Create a message",
+        "tags": [
+          "api"
+        ],
+        "operationId": "createMessage",
+        "parameters": [
+          {
+            "description": "Message object",
+            "name": "message",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "description": "Message object",
+              "type": "object",
+              "$ref": "#/definitions/CreateMessagePayload"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/v1/message/get": {
+      "get": {
+        "description": "Get a message from a queue",
+        "tags": [
+          "api"
+        ],
+        "operationId": "getMessage",
+        "parameters": [
+          {
+            "description": "Queue name",
+            "name": "queue_name",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/v1/message/list": {
+      "get": {
+        "description": "List messages in a queue",
+        "tags": [
+          "api"
+        ],
+        "operationId": "listMessagesInQueue",
+        "parameters": [
+          {
+            "description": "Queue name",
+            "name": "queue_name",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/v1/queue/create": {
+      "post": {
+        "description": "Create a queue",
+        "tags": [
+          "api"
+        ],
+        "operationId": "createQueue",
+        "parameters": [
+          {
+            "description": "Queue name",
+            "name": "queueName",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "description": "Queue name",
+              "type": "object",
+              "$ref": "#/definitions/CreateQueuePayload"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/v1/queue/list": {
+      "get": {
+        "description": "List queues",
+        "tags": [
+          "api"
+        ],
+        "operationId": "listQueues",
+        "responses": {}
+      }
+    }
+  },
+  "definitions": {
+    "CreateMessagePayload": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "x-go-name": "Message"
+        },
+        "queue_name": {
+          "type": "string",
+          "x-go-name": "QueueName"
+        }
+      },
+      "x-go-package": "queue-manager/internal/controllers"
+    },
+    "CreateQueuePayload": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        }
+      },
+      "x-go-package": "queue-manager/internal/controllers"
+    },
+    "DetailedQueuesDashboardResponse": {
+      "type": "object",
+      "properties": {
+        "queue_messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "QueueMessages"
+        },
+        "queue_name": {
+          "type": "string",
+          "x-go-name": "QueueName"
+        },
+        "queue_size": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "QueueSize"
+        }
+      },
+      "x-go-package": "queue-manager/internal/structures"
+    }
+  }
+}

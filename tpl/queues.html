@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Queues</h2>
+<div class="table-responsive small p-2">
+    <div class="row">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Message Count</th>
+                <th scope="col">View</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody id="queuesTable">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer_scripts_ext %}
+<script src="/static/js/queues.js"></script>
+{% endblock %}
+
+{% block ext_navbar %}
+<a href="/queues/create" class="btn btn-primary">Create Queue</a>
+{% endblock %}
+

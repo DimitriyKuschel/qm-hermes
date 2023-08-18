@@ -1,0 +1,25 @@
+[Unit]
+Description=qm-hermes
+
+[Service]
+Type=simple
+User=qm-hermes
+Group=qm-hermes
+PIDFile=/run/qm-hermes/qm-hermes.pid
+RuntimeDirectory=qm-hermes
+TimeoutStopSec=86400
+
+ExecStart=/usr/sbin/qm-hermes -config /etc/qm-hermes/configs/config.yml
+ExecStop=/bin/kill -s TERM $MAINPID
+
+Restart=always
+RestartSec=300s
+
+StandardOutput=syslog
+StandardError=syslog
+
+LimitNOFILE=131072
+
+[Install]
+WantedBy=multi-user.target
+Alias=qm-hermes.service

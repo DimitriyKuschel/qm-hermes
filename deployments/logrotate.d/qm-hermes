@@ -1,0 +1,8 @@
+/var/log/qm-hermes/*.log {
+        rotate 7
+        daily
+        compress
+        missingok
+        delaycompress
+        copytruncate
+}

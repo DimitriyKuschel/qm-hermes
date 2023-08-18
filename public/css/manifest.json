@@ -1,0 +1,20 @@
+{
+  "name": "QM Hermes",
+  "short_name": "qm_hermes",
+  "icons": [
+    {
+      "src": "/static/img/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/img/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/?utm_source=a2hs",
+  "theme_color": "#7952b3",
+  "background_color": "#7952b3",
+  "display": "standalone"
+}

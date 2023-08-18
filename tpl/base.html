@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+<head>
+  {% block header %}
+    {% include 'base/header.html' %}
+  {% endblock %}
+</head>
+<body>
+  {% block dropdowns %}
+    {% include 'base/dropdowns.html' %}
+  {% endblock %}
+
+<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
+  {% block content_header %}
+    {% include 'base/content_header.html' %}
+  {% endblock %}
+    <span style="padding: 2px;">
+         {% block ext_navbar %}
+    {% endblock %}
+    <a href="#" class="github-link">
+        <img src="/static/img/github-mark-white.svg" alt="Project on GitHub" width="32px">
+    </a>
+    </span>
+
+
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+      <div class="offcanvas-lg offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="sidebarMenuLabel">QM Hermes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+          {% block sidebar %}
+             {% include 'base/sidebar.html' %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+  </div>
+</div>
+
+    {% block footer_scripts %}
+    {% include 'base/footer_scripts.html' %}
+    {% endblock %}
+
+    {% block footer_scripts_ext %}
+
+    {% endblock %}
+</body>
+</html>

@@ -68,10 +68,18 @@ nfpms:
       - src: "deployments/systemd/qm-hermes.service"
         dst: "/lib/systemd/system/qm-hermes.service"
 
+      - src: "tpl/*"
+        dst: "/etc/qm-hermes/tpl"
+
+
+      - src: "public/*"
+        dst: "/etc/qm-hermes/public"
+
+
       - src: "deployments/logrotate.d/qm-hermes"
         dst: "/etc/logrotate.d/qm-hermes"
 
-      - src: "configs/config.yml"
+      - src: "configs/config-release.yml"
         dst: "/etc/qm-hermes/config.yml"
         type: config
 

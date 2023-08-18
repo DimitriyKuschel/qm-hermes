@@ -9,7 +9,7 @@ PIDFile=/run/qm-hermes/qm-hermes.pid
 RuntimeDirectory=qm-hermes
 TimeoutStopSec=86400
 
-ExecStart=/usr/sbin/qm-hermes -config /etc/qm-hermes/configs/config.yml
+ExecStart=/usr/sbin/qm-hermes -config /etc/qm-hermes/config.yml
 ExecStop=/bin/kill -s TERM $MAINPID
 
 Restart=always

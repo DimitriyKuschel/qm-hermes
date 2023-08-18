@@ -1,0 +1,22 @@
+pidFile: "/tmp/tmp_app.pid"
+webServer:
+  host: "127.0.0.1"
+  port: 8090
+tcpServer:
+  host: "127.0.0.1"
+  port: 8081
+persistence:
+  filePath: "/etc/qm/queues.bin"
+  saveInterval: 60
+template:
+  publicDir: "/etc/qm-hermes/public"
+  tplDir: "/etc/qm-hermes/tpl/"
+logger:
+  level: "info"
+  mode: 0640
+  dir: "/tmp"
+dashboardAuthentication:
+  required: True
+  username: "admin"
+  password: "admin"
+  secret: "secret"

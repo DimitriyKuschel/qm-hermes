@@ -29,8 +29,6 @@ The Queue Manager Hermes API provides powerful features for managing queues of m
 ##### Endpoints
 The api schema will be available at http://localhost:8090/schema
 
-Certainly! Here's the provided information formatted as a table in `README.md` format:
-
 | Action                 | Description                                      | URL            | Method | Payload/Parameters                                         | Response                         |
 |------------------------|--------------------------------------------------|----------------|--------|------------------------------------------------------------|----------------------------------|
 | Create New Queue       | Create a new queue with a specified name.       | `/api/v1/queue/create`   | POST   | `{"name": "my-queue"}`                                     | Status 201 Created               |

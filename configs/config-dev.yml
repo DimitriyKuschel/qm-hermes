@@ -6,7 +6,7 @@ tcpServer:
   host: "127.0.0.1"
   port: 8081
 persistence:
-  filePath: "/etc/qm/queues.bin"
+  filePath: "/etc/qm/queues1.bin"
   saveInterval: 60
 template:
   publicDir: "public"

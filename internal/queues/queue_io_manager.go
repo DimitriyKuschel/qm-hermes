@@ -48,6 +48,12 @@ func (qio *QueueIOManager) SaveQueuesToFile(qm interfaces.QueueManagerInterface,
 }
 
 func (qio *QueueIOManager) LoadQueuesFromFile(qm interfaces.QueueManagerInterface, fileName string) error {
+	_, err := os.Stat(fileName)
+
+	if os.IsNotExist(err) {
+		return nil
+	}
+
 	file, err := os.Open(fileName)
 	if err != nil {
 		return err
